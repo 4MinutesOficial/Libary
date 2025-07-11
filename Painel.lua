@@ -41,6 +41,20 @@ function GuiLib:Painelzao(nome)
     UICornerzão.CornerRadius = UDim.new(0, 15)
     UICornerzão.Parent = Painelzao
 
+    local Container = Instance.new("ScrollingFrame")
+    Container.Name = "Container"
+    Container.Size = UDim2.new(1, -20, 1, -60)
+    Container.Position = UDim2.new(0, 10, 0, 50)
+    Container.BackgroundTransparency = 1
+    Container.BorderSizePixel = 0
+    Container.ScrollBarThickness = 5
+    Container.Parent = Painelzao
+
+    local Layout = Instance.new("UIListLayout")
+    Layout.SortOrder = Enum.SortOrder.LayoutOrder
+    Layout.Padding = UDim.new(0, 10)
+    Layout.Parent = Container
+
     local BarraMin = Instance.new("Frame")
     BarraMin.Name = "BarraMin"
     BarraMin.Size = UDim2.new(0, 150, 0, 40)
@@ -96,7 +110,6 @@ function GuiLib:Painelzao(nome)
     end
 
     BotãoMin.MouseButton1Click:Connect(function()
-        -- Minimizar animação
         local tweenSize = TweenService:Create(Painelzao, TweenInfo.new(0.3), {Size = UDim2.new(0, 150, 0, 40)})
         local tweenPos = TweenService:Create(Painelzao, TweenInfo.new(0.3), {Position = UDim2.new(0, 20, 1, -60)})
         tweenSize:Play()
@@ -117,21 +130,21 @@ function GuiLib:Painelzao(nome)
             tweenPos:Play()
         end
     end)
-  
+
     AnimarFade(Painelzao, true)
 
     return {
         Gui = GuiN,
         Painel = Painelzao,
+        Container = Container,
         Barra = BarraMin,
         BotaoMin = BotãoMin
     }
 end
 
-function GuiLib:Botãozin(texto, parent, callback)
+function GuiLib:Botaozin(texto, parent, callback)
     local Botãozin = Instance.new("TextButton")
-    Botãozin.Size = UDim2.new(1, -20, 0, 45)
-    Botãozin.Position = UDim2.new(0, 10, 0, 0)
+    Botãozin.Size = UDim2.new(1, 0, 0, 45)
     Botãozin.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
     Botãozin.TextColor3 = Color3.new(1, 1, 1)
     Botãozin.Text = texto
