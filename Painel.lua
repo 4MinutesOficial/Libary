@@ -7,9 +7,12 @@ local PlayerGui = Local:WaitForChild("PlayerGui")
 function GuiLib:Painelzao(nome)
     local Antiguin = PlayerGui:FindFirstChild(nome)
     if Antiguin then
-        local Out = TweenService:Create(Antiguin, TweenInfo.new(0.3), {BackgroundTransparency = 1})
-        Out:Play()
-        Out.Completed:Wait()
+        local Painel = Antiguin:FindFirstChild("Painelzao")
+        if Painel then
+            local Out = TweenService:Create(Painel, TweenInfo.new(0.3), {BackgroundTransparency = 1})
+            Out:Play()
+            Out.Completed:Wait()
+        end
         Antiguin:Destroy()
     end
 
